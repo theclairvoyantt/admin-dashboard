@@ -14,6 +14,8 @@ import Form from "./scenes/form";
 import FAQ from "./scenes/faq";
 // import Geography from "./scenes/geography";
 import Calendar from "./scenes/calendar";
+import Login_Form from './scenes/login_page';
+import Password_Reset from './scenes/password_reset';
 
 
 
@@ -33,6 +35,8 @@ function App() {
               <Route path="/contacts" element={<Contacts/>}/>
               <Route path="/invoices" element={<Invoices/>}/>
               <Route path="/form" element={<Form/>}/>
+              <Route path="/loginform" element={<Login_Form/>}/>
+              <Route path="/passwordreset" element={<Password_Reset/>}/>
               {/* <Route path="/bar" element={<Bar/>}/> */}
               {/* <Route path="/pie" element={<Pie/>}/> */}
               {/* <Route path="/line" element={<Line/>}/> */}

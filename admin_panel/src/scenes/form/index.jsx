@@ -4,6 +4,7 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 
+
 const Form = () => {
     
     const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -76,7 +77,20 @@ const Form = () => {
                   name="email"
                   error={!!touched.email && !!errors.email}
                   helperText={touched.email && errors.email}
-                  sx={{ gridColumn: "span 4" }}
+                  sx={{ gridColumn: "span 2" }}
+                />
+                <TextField
+                  fullWidth
+                  variant="filled"
+                  type="text"
+                  label="Username"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.username}
+                  name="username"
+                  error={!!touched.username && !!errors.username}
+                  helperText={touched.username && errors.username}
+                  sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
                   fullWidth
@@ -89,34 +103,49 @@ const Form = () => {
                   name="contact"
                   error={!!touched.contact && !!errors.contact}
                   helperText={touched.contact && errors.contact}
-                  sx={{ gridColumn: "span 4" }}
+                  sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
                   fullWidth
                   variant="filled"
                   type="text"
-                  label="Address 1"
+                  label="Age"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.address1}
-                  name="address1"
-                  error={!!touched.address1 && !!errors.address1}
-                  helperText={touched.address1 && errors.address1}
-                  sx={{ gridColumn: "span 4" }}
+                  value={values.age}
+                  name="age"
+                  error={!!touched.age && !!errors.age}
+                  helperText={touched.age && errors.age}
+                  sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
                   fullWidth
                   variant="filled"
-                  type="text"
-                  label="Address 2"
+                  type="password"
+                  label="Password"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.address2}
-                  name="address2"
-                  error={!!touched.address2 && !!errors.address2}
-                  helperText={touched.address2 && errors.address2}
-                  sx={{ gridColumn: "span 4" }}
+                  value={values.password}
+                  name="password"
+                  error={!!touched.password && !!errors.password}
+                  helperText={touched.password && errors.password}
+                  sx={{ gridColumn: "span 2" }}
                 />
+                <TextField
+                  fullWidth
+                  variant="filled"
+                  type="password"
+                  label="Confirm Password"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.confirmpassword}
+                  name="confirmpassword"
+                  error={!!touched.confirmpassword && !!errors.confirmpassword}
+                  helperText={touched.confirmpassword && errors.confirmpassword}
+                  sx={{ gridColumn: "span 2" }}
+                />
+                
+                
               </Box>
               <Box display="flex" justifyContent="end" mt="20px">
                 <Button type="submit" color="secondary" variant="contained">
@@ -143,17 +172,25 @@ const Form = () => {
       .string()
       .matches(phoneRegExp, "Phone number is not valid")
       .required("required"),
-    address1: yup.string().required("required"),
-    address2: yup.string().required("required"),
+    age: yup.number().required("required").min(15, "You need to be older than 15 to register"),
+    password: yup.string().required("required"),
+    confirmpassword: yup
+      .string()
+      .required("required")
+      .oneOf([yup.ref("password"), null], "Passwords must match"),
   });
+
+    username: yup.string().required("required")
   const initialValues = {
 
     firstName: "",
     lastName: "",
     email: "",
     contact: "",
-    address1: "",
-    address2: "",
+    age: "",
+    password: "",
+    confirmpassword: "",
+    username: "",
   };
   
   export default Form;
